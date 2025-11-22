@@ -22,7 +22,7 @@ export const signup = async (req,res,next) => {
         const user = new User({email,password});
         await user.save();
         const token = createToken(email,user._id);
-        res.cookie('jwt',token,{secure:true,maxAge:maxAge,sameSite:"None"});
+        res.cookie('jwt',token,{secure:true,maxAge:maxAge,sameSite:"None",httpOnly:true});
         res.status(201).json({
             user:{
                 email:user.email,
@@ -53,7 +53,7 @@ export const login = async (req,res,next) => {
             return res.status(404).send( 'Invalid password');
         }
         const token = createToken(email,user._id);
-        res.cookie('jwt',token,{secure:true,maxAge:maxAge,sameSite:"None"});
+        res.cookie('jwt',token,{secure:true,maxAge:maxAge,sameSite:"None",httpOnly:true});
         res.status(200).json({
             user:{
                 email:user.email,
