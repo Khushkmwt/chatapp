@@ -9,6 +9,7 @@ const createToken = (email,userId) =>{
     return jwt.sign({email,userId},process.env.JWT_KEY,{expiresIn:maxAge})
 }
 export const signup = async (req,res,next) => {
+    console.log("req received")
     try {
         const {email,password} = req.body;
         if (!email || !password) {
