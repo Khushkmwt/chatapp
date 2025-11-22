@@ -22,7 +22,7 @@ export const signup = async (req,res,next) => {
         const user = new User({email,password});
         await user.save();
         const token = createToken(email,user._id);
-        res.cookie('jwt',token,{secure:true,maxAge:maxAge,sameSite:"None",httpOnly:true, path: "/"});
+        res.cookie('chatapp_token',token,{secure:true,maxAge:maxAge,sameSite:"none",httpOnly:true, path: "/"});
         res.status(201).json({
             user:{
                 email:user.email,
@@ -53,7 +53,7 @@ export const login = async (req,res,next) => {
             return res.status(404).send( 'Invalid password');
         }
         const token = createToken(email,user._id);
-        res.cookie('jwt',token,{secure:true,maxAge:maxAge,sameSite:"None",httpOnly:true, path: "/"});
+        res.cookie('chatapp_token',token,{secure:true,maxAge:maxAge,sameSite:"none",httpOnly:true, path: "/"});
         res.status(200).json({
             user:{
                 email:user.email,
@@ -175,7 +175,7 @@ export const removeProfileImage = async (req,res,next) => {
 
 export const logout = async (req,res,next) => {
     try {
-        res.cookie("jwt" ,"" ,{maxAge:1, secure:true , sameSite:"None"})
+        res.cookie("chatapp_token" ,"" ,{maxAge:1, secure:true , sameSite:"none"})
         return res.status(200).send("logged out successfully ")
        
     } catch (error) {
