@@ -14,10 +14,13 @@ export const SocketProvider = ({ children }) => {
     const {userInfo} = useAppStore()
     useEffect(() => {
         if (userInfo) {
-            socket.current = io(HOST,{
-                query: {userId : userInfo.id},
-                withCredentials:true
-            })
+           socket.current = io(HOST, {
+               query: { userId: userInfo.id },
+               withCredentials: true,
+               transports: ["websocket"],           // force WS only
+               autoConnect: true,
+            });
+
             socket.current.on('connect', () => {
                 console.log('connected to socket server')
             })
