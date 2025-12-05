@@ -41,6 +41,10 @@ app.use("/api/auth",authRoutes)
 app.use("/api/contacts" ,contactRoutes)
 app.use("/api/messages" ,messagesRoutes)
 app.use("/api/channel",channelRoutes)
+
+app.get("/",(req,res) => {
+    res.send("Welcome to chatapp")
+})
 const server = app.listen(port,() =>{
     console.log(`Server is running on port ${port}`)
 });
