@@ -1,11 +1,17 @@
 {
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "https://chatapp-6cry.onrender.com/api/$1"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src-elem 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self' https://cdn.jsdelivr.net; img-src 'self' data: https://chatapp-6cry.onrender.com; connect-src 'self' https://chatapp-6cry.onrender.com wss://chatapp-6cry.onrender.com; frame-src 'self';"
+          "value": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com; style-src-elem 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net data:; img-src 'self' data: https://chatapp-6cry.onrender.com; connect-src 'self' https://chatapp-6cry.onrender.com wss://chatapp-6cry.onrender.com; frame-src 'self';"
         }
       ]
     }
